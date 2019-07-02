@@ -1,0 +1,26 @@
+ public static int print(int [] a, int i, int n, String s) {
+                            if(i == n)  {
+                                System.out.println(s);
+                                return 0;
+                            }
+                    
+                            int ans = 0;
+                            if(i < n-1 && ((a[i+1] <= 6 && a[i] <= 2)||(a[i+1] <= 9 && a[i] == 1))) {
+                                          //System.out.println(s);
+                               ans += print(a, i+2, n, new String(s+(char)(a[i]*10+a[i+1]+'a'-1))) +1;
+                           }
+                            
+                                      // System.out.println(s);
+                            ans += print(a, i+1, n, new String(s+(char)(a[i]+'a'-1)));
+                            return ans;
+                        }
+                    
+                    	public static void main(String[] args) throws Exception {
+                    		int n=Integer.parseInt(br.readLine());
+                        int[] a=new int[n];
+                    		String s[]=br.readLine().split(" ");
+                        for(int i=0;i<n;i++)
+                        a[i]=Integer.parseInt(s[i]);
+                        String s=new String();
+                    		System.out.println(print(a,0,4,s)+1);
+                    	}
