@@ -1,0 +1,44 @@
+class Main {    public static void main(String args[]) throws Exception
+                         {
+                             
+                          BufferedReader br=new BufferedReader(new InputStreamReader(System.in));   
+                          String s[]=br.readLine().split(" ");
+                          String t[]=br.readLine().split(" ");
+                             int i=0,j=0,k=0,f=0;
+                             ArrayList<Integer> al=new ArrayList<Integer>();
+                             ArrayList<Integer> al1=new ArrayList<Integer>();
+                             for(i=0;i<s.length;i++)
+                             {
+                                 int x=Integer.parseInt(t[0]);
+                                 x=x-Integer.parseInt(s[i]);
+                                 for(j=i+1;j<s.length;j++)
+                                 {
+                                 for(k=j+1;k<s.length;k++)
+                                 {
+                                 if((x-Integer.parseInt(s[j])-Integer.parseInt(s[k]))==0)
+                                 {
+                                     f=1;
+                                     break;
+                                 }
+                                 }
+                                 if(f==1)
+                                     break;
+                                 }
+                                 if(f==1)
+                                     break;
+                             }
+                             for(int l=0;l<s.length;l++)
+                             {
+                                 if(l!=k && l!=i && l!=j)
+                                 {
+                                 al.add(Integer.parseInt(s[l]));
+                                 }
+                                 else
+                                     al1.add(Integer.parseInt(s[l]));
+                             }
+                             Collections.sort(al,Collections.reverseOrder());
+                             Collections.sort(al1,Collections.reverseOrder());
+                             System.out.println(al1 +"\n"+al );
+                         }
+
+}
