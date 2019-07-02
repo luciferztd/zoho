@@ -1,0 +1,31 @@
+class Main
+{
+ public static int noofstrings(int a[],int ind,String s)
+   {
+   if(ind>=a.length)
+   {
+       System.out.println(s);
+       return 0;
+   }
+   else
+   {
+    int c=0;   
+    if(ind<a.length-1 && ( (a[ind+1]<=6 &&a[ind]<=2) ||(a[ind]<=1 && a[ind+1]<=9) ) )
+       c+=noofstrings(a,ind+2,new String(s+(char)('a'+((a[ind]*10)+a[ind+1]-1))))+1;
+    c+=noofstrings(a,ind+1,s+(char)('a'+a[ind]-1));
+    return c;
+   }
+   }
+    
+  public static void main(String args[]) throws Exception
+  {
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  String ip[]=br.readLine().split(" ");
+  int a[]=new int[ip.length];
+  for(int i=0;i<ip.length;i++)
+      a[i]=Integer.parseInt(ip[i]);
+  String s=new String();
+  System.out.println(noofstrings(a,0,s)+1);
+  }   
+}
+}
