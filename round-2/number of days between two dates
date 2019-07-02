@@ -1,0 +1,49 @@
+class Main
+{
+ public static int calculatediff(Date d1,Date d2)
+     {
+     int days[]={31,28,31,30,31,30,31,31,30,31,30,31};
+     int noofdays=0;
+     if(d2.y-d1.y>0 &&d1.m<=d2.m)
+     {
+         noofdays+=(d2.y-d1.y)*365;
+     }
+     else if(d2.y-d1.y>0){    
+     for(int i=d1.m;i<12;i++)
+         noofdays+=days[i];
+     for(int i=0;i<d2.m;i++)
+         noofdays+=days[i];
+     System.out.println(noofdays);
+     }
+     //System.out.println(noofdays+"a");
+     if(d1.d-d2.d!=0 ||d1.m-d2.m!=0)
+     {
+     noofdays+=days[(d1.m)-1]-d1.d;
+     noofdays+=d2.d;
+     }
+     //System.out.println(noofdays+"b");
+     int x=0;
+     if(d1.m>2)
+         x+=1;
+     for(int i=d1.y+x;i<d2.y;i++)
+     if((i%4==0 && i%100!=0)||(i%400==0 && i%100==0))
+         noofdays+=1;
+    // System.out.println(noofdays+"c");
+     if(d2.m>2)
+     {
+     if((d2.y%4==0 && d2.y%100!=0)||(d2.y%400==0 && d2.y%100==0))
+         noofdays+=1;
+     }
+         return noofdays;
+     }
+    
+       public static void main(String args[]) throws Exception
+     {
+         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+         String s[]=br.readLine().split(" ");
+         Date d1=new Date(Integer.parseInt(s[0]),Integer.parseInt(s[1]),Integer.parseInt(s[2]));
+         String s1[]=br.readLine().split(" ");
+         Date d2=new Date(Integer.parseInt(s1[0]),Integer.parseInt(s1[1]),Integer.parseInt(s1[2]));
+         System.out.println(calculatediff(d1,d2));
+     } 
+}
