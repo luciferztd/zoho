@@ -1,0 +1,95 @@
+class A implements Comparator<A>{
+    String s;
+    Integer val;
+    A()
+    {
+    }
+    A(String s,int a)
+    {
+        this.s=s;
+        this.val=a;
+    }
+    public int compare(A a, A b) 
+    { 
+        return a.val - b.val; 
+    } 
+  
+} 
+ class Main{
+ public static void main(String args[]) throws Exception
+                         {
+                             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+                             ArrayList<A> seq=new ArrayList<A>(); 
+                             int n=Integer.parseInt(br.readLine());
+                             for(int i=0;i<n;i++)
+                             {
+                             String s=br.readLine();
+                             if(s.contains("^"))
+                             {
+                             int x=0;
+                             ArrayList<Integer> number=new ArrayList<Integer>();
+                             for(int j=0;j<s.length();j++)
+                             {   
+                             if(s.charAt(j)!='^')
+                             {
+                             x=x*10+(s.charAt(j)-'0');
+                             }
+                             else
+                             {
+                             number.add(x);
+                             x=0;
+                             }
+                             }
+                             number.add(x);
+                             int value=number.get(0);
+                             for(int j=1;j<number.size(); j++)
+                             {
+                             value=(int)Math.pow(value,number.get(j));
+                             }
+                             
+                             A a=new A(s,value);
+                             seq.add(a);
+                             }
+                       
+                             else if(s.contains("*"))
+                             {
+                             int x=0;
+                             ArrayList<Integer> number=new ArrayList<Integer>();
+                             for(int j=0;j<s.length();j++)
+                             {   
+                             if(s.charAt(j)!='*')
+                             {
+                             x=x*10+(s.charAt(j)-'0');
+                             }                           
+                             else
+                             {
+                             number.add(x);
+                             x=0;
+                             }
+                             }
+                             number.add(x);
+                             int value=number.get(0);
+                             for(int j=1;j<number.size(); j++)
+                             {
+                             value=value*number.get(j);
+                             }
+                             
+                             A a=new A(s,value);
+                             seq.add(a);
+                             }
+                             else
+                             {
+                             A a=new A(s,Integer.parseInt(s));
+                             seq.add(a);
+                             }
+                             
+                             }
+                             Collections.sort(seq,new A());
+                             
+                             System.out.println("Sorted Seq is according to value is");
+                             for(A i:seq)
+                             {
+                             System.out.println(i.s);
+                             }
+                         }
+}
